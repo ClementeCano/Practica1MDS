@@ -1,0 +1,123 @@
+model aviacion
+
+-------------- Clases ------------------
+class Avion
+  attributes
+    numeroVuelos : Integer
+    kilometrosRecorridos : Integer
+end
+
+class Aerolinea
+  attributes
+    nombre : String -- Tiene que ser distino (invariante)
+end
+
+associationclass Contrato between
+  Avion[0..*] role avion
+  Aerolinea[1..*] role aerolinea
+  attributes
+    numMeses : Integer
+    precioMes : Real
+    precioTotal : Real derive : -- DERIVED
+      self.numMeses * self.precioMes
+end
+
+class Aeropuerto
+end
+
+class Hangar
+  attributes
+    capacidad : Integer
+end
+
+class Desguace
+attributes
+  capacidad : Integer
+end
+
+class Ciudad
+attributes
+  nombre : String
+end
+
+class Persona
+attributes
+  nombre : String
+  edad : Integer
+end
+
+class Piloto < Persona
+  attributes
+    kilometrosVolados : Integer
+    numeroDeVuelos : Integer
+    --esPro : Boolean derive :
+end
+
+class Vuelo
+  attributes
+    id : String
+    numKilometros : Integer
+end
+
+-------------Fin de Clases--------
+
+
+----------Asociaciones---------------
+composition HangarEnAeropuerto between
+  Aeropuerto[0..1] role aeropuerto
+  Hangar[0..*] role hangar
+end
+
+composition DesguaceEnAeropuerto between
+  Aeropuerto[0..1] role aeropuerto
+  Desguace[0..1] role desguace
+end
+
+association AeropuertoEnCiudad between
+  Aeropuerto[0..1] role aeropuerto
+  Ciudad[0..1] role ciudad
+end
+
+association VueloRealizado between
+  Avion[1] role avion
+  Vuelo[0..*] role vuelo
+end
+
+association PilotoPrincipal between
+  Piloto[1] role pilotoPrincipal
+  Vuelo[0..*] role vueloPrincipal
+end
+
+association PilotoSecundario between
+  Piloto[0..1] role pilotoSecundario
+  Vuelo[0..*] role vueloSecundario
+end
+
+association Trabajar between
+  Piloto[0..*] role trabaja
+  Aerolinea[0..2] role aerolinea
+end
+
+association Volar between
+  Persona[0..*] role viaja
+  Vuelo[0..*] role lleva
+end
+
+association AvionEnHangar between
+  Avion[0..*] role estacionado
+  Hangar[0..1] role contiene
+end
+
+association AvionEnDesguace between
+  Avion[0..*] role relegado
+  Desguace[0..1] role incluir
+end
+----------Fin de Asociaciones-------------
+
+
+----------Clases de asociación----------
+
+----------Fin de Clases de Asociación----------
+
+
+----------Invariantes (Restricciones de integridad)----------
