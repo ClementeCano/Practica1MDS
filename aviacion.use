@@ -3,8 +3,9 @@ model aviacion
 -------------- Clases ------------------
 class Avion
   attributes
-    numeroVuelos : Integer
-    kilometrosRecorridos : Integer
+    numVuelos : Integer
+    --kilometrosRecorridos : Real derive : 
+     -- COMPLETAR
 end
 
 class Aerolinea
@@ -49,14 +50,14 @@ end
 class Piloto < Persona
   attributes
     kilometrosVolados : Integer
-    numeroDeVuelos : Integer
+    --numeroDeVuelos : Integer derive :   --CREO QUE ESTA TAMBIÉN ES DERIVADA
     --esPro : Boolean derive :
 end
 
 class Vuelo
   attributes
     id : String
-    numKilometros : Integer
+    numKilometros : Real
 end
 
 -------------Fin de Clases--------
@@ -64,18 +65,18 @@ end
 
 ----------Asociaciones---------------
 composition HangarEnAeropuerto between
-  Aeropuerto[0..1] role aeropuerto
+  Aeropuerto[1] role aeropuerto
   Hangar[0..*] role hangar
 end
 
 composition DesguaceEnAeropuerto between
-  Aeropuerto[0..1] role aeropuerto
+  Aeropuerto[1] role aeropuerto
   Desguace[0..1] role desguace
 end
 
 association AeropuertoEnCiudad between
   Aeropuerto[0..1] role aeropuerto
-  Ciudad[0..1] role ciudad
+  Ciudad[1] role ciudad
 end
 
 association VueloRealizado between
@@ -94,23 +95,23 @@ association PilotoSecundario between
 end
 
 association Trabajar between
-  Piloto[0..*] role trabaja
+  Piloto[0..*] role piloto
   Aerolinea[0..2] role aerolinea
 end
 
 association Volar between
-  Persona[0..*] role viaja
+  Persona[0..*] role pasajero
   Vuelo[0..*] role lleva
 end
 
 association AvionEnHangar between
-  Avion[0..*] role estacionado
+  Avion[0..*] role avionEstacionado
   Hangar[0..1] role contiene
 end
 
 association AvionEnDesguace between
-  Avion[0..*] role relegado
-  Desguace[0..1] role incluir
+  Avion[0..*] role avionRelegado
+  Desguace[0..1] role incluye
 end
 ----------Fin de Asociaciones-------------
 
