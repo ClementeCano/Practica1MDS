@@ -49,7 +49,7 @@ end
 
 class Piloto < Persona
   attributes
-    kilometrosVolados : Integer
+    kilometrosVolados : Integer derive --DERIVED
     --numeroDeVuelos : Integer derive :   --CREO QUE ESTA TAMBIÉN ES DERIVADA
     --esPro : Boolean derive :
 end
