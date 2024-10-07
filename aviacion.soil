@@ -1,0 +1,99 @@
+reset 
+!new Avion('Boeing')
+!Boeing.numVuelos = 2
+!Boeing.kilometrosRecorridos = 300
+
+!new Avion('Airbus')
+!Airbus.numVuelos = 0
+!Airbus.kilometrosRecorridos = 0
+
+!new Avion('Caza')
+!Airbus.numVuelos = 8
+!Airbus.kilometrosRecorridos = 2647
+
+!new Avion('Avioneta')
+!Airbus.numVuelos = 2
+!Airbus.kilometrosRecorridos = 777
+
+!new Aerolinea('Iberia')
+!Iberia.nombre = 'Iberia'
+
+!new Aerolinea('AirEuropa')
+!AirEuropa.nombre = 'AirEuropa'
+
+!new Aeropuerto('Barajas')
+
+!new Aeropuerto('Heathrow')
+
+!new Hangar('Hangar1')
+!Hangar1.capacidad = 100
+
+!new Hangar('Hangar2')
+!Hangar2.capacidad = 200
+
+!new Desguace('Desguace1')
+!Desguace1.capacidad = 300
+
+!new Ciudad('Madrid')
+!Madrid.nombre = 'Madrid'
+
+!new Ciudad('Londres')
+!Londres.nombre = 'Londres'
+
+!new Persona('Pepe')
+!Pepe.nombre = 'Pepe'
+!Pepe.edad = 40
+
+!new Persona('Juan')
+!Juan.nombre = 'Juan'
+!Juan.edad = 30
+
+!new Persona('Maria')
+!Maria.nombre = 'Maria'
+!Maria.edad = 20
+
+!new Piloto('Pepe')
+!Pepe.nombre = 'Pepe'
+!Pepe.edad = 40
+!Pepe.kilometrosVolados = 300
+!Pepe.numeroDeVuelos = 2
+
+!new Piloto('Juan')
+!Juan.nombre = 'Juan'
+!Juan.edad = 30
+!Juan.kilometrosVolados = 200   
+!Juan.numeroDeVuelos = 1
+
+!new Vuelo('Vuelo1')
+!Vuelo1.id = 'Vuelo1'
+!Vuelo1.numKilometros = 100
+
+!new Vuelo('Vuelo2')
+!Vuelo2.id = 'Vuelo2'
+!Vuelo2.numKilometros = 200
+
+!insert(Barajas, Hangar1) into HangarEnAeropuerto --HangarEnAeropuerto1
+!insert(Barajas, Hangar2) into HangarEnAeropuerto --HangarEnAeropuerto2
+!insert(Heathrow, Desguace1) into DesguaceEnAeropuerto --DesguaceEnAeropuerto1
+!insert(Madrid, Barajas) into AeropuertoEnCiudad --AeropuertoEnCiudad1
+!insert(Londres, Heathrow) into AeropuertoEnCiudad --AeropuertoEnCiudad2
+!insert(Boeing, Vuelo1) into VueloRealizado --VueloRealizado1
+!insert(Boeing, Vuelo2) into VueloRealizado --VueloRealizado2
+!insert(Pepe, Vuelo1) into PilotoPrincipal --PilotoPrincipal1   
+!insert(Pepe, Vuelo2) into PilotoPrincipal --PilotoPrincipal2
+!insert(Juan, Vuelo2) into PilotoSecundario --PilotoSecundario1
+!insert(Juan, Iberia) into Trabajar --Trabajar1
+!insert(Juan, AirEuropa) into Trabajar --Trabajar2
+!insert(Pepe, AirEuropa) into Trabajar --Trabajar2
+!insert(Maria, Vuelo1) into Volar --Volar1
+!insert(Caza,Desguace1) into AvionEnDesguace --AvionEnDesguace1
+!insert(Avioneta,Hangar1) into AvionEnHangar --AvionEnHangar1
+
+
+
+
+
+
+
+
+
