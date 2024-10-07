@@ -3,9 +3,12 @@ model aviacion
 -------------- Clases ------------------
 class Avion
   attributes
-    numVuelos : Integer
-    --kilometrosRecorridos : Real derive : 
-     -- COMPLETAR
+    numVuelos : Integer derive :
+      self.vuelo->size()
+    kilometrosRecorridos : Real derive : 
+      self.vuelo->iterate(v ; res : Real = 0.0 |
+      res + v.numKilometros
+      ) in
 end
 
 class Aerolinea
@@ -96,7 +99,7 @@ end
 
 association Trabajar between
   Piloto[0..*] role piloto
-  Aerolinea[0..1] role aerolinea
+  Aerolinea[0..2] role aerolinea
 end
 
 association Volar between
@@ -122,3 +125,13 @@ end
 
 
 ----------Invariantes (Restricciones de integridad)----------
+context Aerolinea
+
+inv nombreDistinto : Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 implies a1.nombre <> a2.nombre)
+
+context Desguace inv avionEnDesguace1000Viajes :
+  self.avionRelegado->forAll(a | a.numVuelos >= 1000)
+
+-- Los pilotos principal y secundario deben ser personas distintas
+context Vuelo inv pilotosDistintos : 
+  self.pilotoPrincipal != self.pilotoSecundario or self.pilotoSecundario == null
