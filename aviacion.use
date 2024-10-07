@@ -136,7 +136,7 @@ constraints
 context Aerolinea
 -- Las aerolíenas deben tener nombres distintos
 inv nombreDistinto : 
-  Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 and a1.nombre <> a2.nombre)
+  Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 implies a1.nombre <> a2.nombre)
 
 context Avion
 -- Un avión no puede estar en un hangar y en un desguace a la vez
