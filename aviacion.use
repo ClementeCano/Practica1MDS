@@ -134,11 +134,20 @@ end
 constraints
 
 context Aerolinea
-inv nombreDistinto : Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 implies a1.nombre <> a2.nombre)
+inv nombreDistinto : 
+  Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 implies a1.nombre <> a2.nombre)
+
+context Avion
+inv SiEstaEnHangarNoEstaEnDesguace : 
+  not (self.contiene->notEmpty() and self.incluye->notEmpty())
 
 context Desguace 
 inv avionEnDesguace1000Viajes :
   self.avionRelegado->forAll(a | a.numVuelos >= 1000)
+
+context Hangar 
+inv avionesEstacionadosMenorACapacidad : 
+  self.avionEstacionado->size() <= self.capacidad
 
 -- Los pilotos principal y secundario deben ser personas distintas
 context Vuelo 
