@@ -144,6 +144,8 @@ inv SiEstaEnHangarNoEstaEnDesguace :
 context Desguace 
 inv avionEnDesguace1000Viajes :
   self.avionRelegado->forAll(a | a.numVuelos >= 1000)
+inv avionesEnDesguaceMenorACapacidad : 
+  self.avionRelegado->size() <= self.capacidad
 
 context Hangar 
 inv avionesEstacionadosMenorACapacidad : 
