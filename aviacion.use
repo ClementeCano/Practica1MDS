@@ -140,4 +140,4 @@ context Desguace inv avionEnDesguace1000Viajes :
 
 -- Los pilotos principal y secundario deben ser personas distintas
 context Vuelo inv pilotosDistintos : 
-  self.pilotoPrincipal != self.pilotoSecundario or self.pilotoSecundario == null
+  self.pilotoPrincipal != self.pilotoSecundario or self.pilotoSecundario.isUndefined()
