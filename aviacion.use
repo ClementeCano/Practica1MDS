@@ -52,10 +52,10 @@ end
 
 class Piloto < Persona
   attributes
-    kilometrosVolados : Real derive : -- DERIVED
+    kilometrosVolados : Real derive : 
       self.vueloPrincipal->collect(vuelo).numKilometros->sum() + 
       self.vueloSecundario->collect(vuelo).numKilometros->sum()
-    numeroDeVuelos : Integer derive :   --CREO QUE ESTA TAMBIÉN ES DERIVADA
+    numeroDeVuelos : Integer derive :   
       self.vueloPrincipal->size() + 
       self.vueloSecundario->size()
     esPro : Boolean derive :
