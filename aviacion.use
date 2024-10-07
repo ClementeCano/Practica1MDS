@@ -96,7 +96,7 @@ end
 
 association Trabajar between
   Piloto[0..*] role piloto
-  Aerolinea[0..1] role aerolinea
+  Aerolinea[0..2] role aerolinea
 end
 
 association Volar between
