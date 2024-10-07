@@ -55,7 +55,6 @@ class Piloto < Persona
      kilometrosVolados : Real derive: --DERIVED
       self.vueloPrincipal->collect(v | v.numKilometros)->sum() + 
       self.vueloSecundario->collect(v | v.numKilometros)->sum()
-    --numeroDeVuelos : Integer derive : 
     esPro : Boolean derive :
       self.vueloPrincipal->size() >= 1000 and
       self.vueloSecundario->size() >= 2000
