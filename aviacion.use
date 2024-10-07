@@ -3,9 +3,12 @@ model aviacion
 -------------- Clases ------------------
 class Avion
   attributes
-    numVuelos : Integer
-    --kilometrosRecorridos : Real derive : 
-     -- COMPLETAR
+    numVuelos : Integer derive :
+      self.vuelo->size()
+    kilometrosRecorridos : Real derive : 
+      self.vuelo->iterate(v ; res : Real = 0.0 |
+      res + v.numKilometros
+      ) in
 end
 
 class Aerolinea
@@ -49,9 +52,15 @@ end
 
 class Piloto < Persona
   attributes
-    kilometrosVolados : Integer derive --DERIVED
-    --numeroDeVuelos : Integer derive :   --CREO QUE ESTA TAMBIÉN ES DERIVADA
-    --esPro : Boolean derive :
+    kilometrosVolados : Real derive : -- DERIVED
+      self.vueloPrincipal->collect(vuelo).numKilometros->sum() + 
+      self.vueloSecundario->collect(vuelo).numKilometros->sum()
+    numeroDeVuelos : Integer derive :   --CREO QUE ESTA TAMBIÉN ES DERIVADA
+      self.vueloPrincipal->size() + 
+      self.vueloSecundario->size()
+    esPro : Boolean derive :
+      self.vueloPrincipal->size() >= 1000 and
+      self.vueloSecundario->size() >= 2000
 end
 
 class Vuelo
@@ -122,3 +131,13 @@ end
 
 
 ----------Invariantes (Restricciones de integridad)----------
+context Aerolinea
+
+inv nombreDistinto : Aerolinea.allInstances()->forAll(a1, a2 | a1 <> a2 implies a1.nombre <> a2.nombre)
+
+context Desguace inv avionEnDesguace1000Viajes :
+  self.avionRelegado->forAll(a | a.numVuelos >= 1000)
+
+-- Los pilotos principal y secundario deben ser personas distintas
+context Vuelo inv pilotosDistintos : 
+  self.pilotoPrincipal != self.pilotoSecundario or self.pilotoSecundario == null
