@@ -8,7 +8,7 @@ reset
 !Airbus.kilometrosRecorridos := 0
 
 !new Avion('Caza')
-!Airbus.numVuelos := 8
+!Airbus.numVuelos := 1001
 !Airbus.kilometrosRecorridos := 2647
 
 !new Avion('Avioneta')
