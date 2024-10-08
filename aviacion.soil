@@ -8,7 +8,7 @@ reset
 !Airbus.kilometrosRecorridos := 0
 
 !new Avion('Caza')
-!Airbus.numVuelos := 1001
+!Airbus.numVuelos := 0
 !Airbus.kilometrosRecorridos := 2647
 
 !new Avion('Avioneta')
@@ -78,7 +78,7 @@ reset
 !insert(Juan, AirEuropa) into Trabajar --Trabajar2
 !insert(Pepe, AirEuropa) into Trabajar --Trabajar2
 !insert(Maria, Vuelo1) into Volar --Volar1
-!insert(Caza,Desguace1) into AvionEnDesguace --AvionEnDesguace1
+!insert(Boeing,Desguace1) into AvionEnDesguace --AvionEnDesguace1
 !insert(Avioneta,Hangar1) into AvionEnHangar --AvionEnHangar1
 
 
