@@ -1,25 +1,17 @@
+-- Con este escenario comprobamos que no se cumplan las invariantes de nombreDistinto, SiEstaEnHangarNoEstaEnDesguace, 
+-- avionEnDesguace1000Viajes, PilotosDistintos
+
 reset 
 !new Avion('Boeing')
-!Boeing.numVuelos := 2
-!Boeing.kilometrosRecorridos := 300
 
-!new Avion('Airbus')
-!Airbus.numVuelos := 0
-!Airbus.kilometrosRecorridos := 0
-
-!new Avion('Caza')
-!Airbus.numVuelos := 0
-!Airbus.kilometrosRecorridos := 2647
 
 !new Avion('Avioneta')
-!Airbus.numVuelos := 2
-!Airbus.kilometrosRecorridos := 777
 
 !new Aerolinea('Iberia')
 !Iberia.nombre := 'Iberia'
 
 !new Aerolinea('AirEuropa')
-!AirEuropa.nombre := 'AirEuropa'
+!AirEuropa.nombre := 'Iberia'
 
 !new Aeropuerto('Barajas')
 
@@ -54,7 +46,8 @@ reset
 !Juan.nombre := 'Juan'
 !Juan.edad := 30
 !Juan.kilometrosVolados := 200   
-!Juan.numeroDeVuelos := 1
+!Juan.numeroDeVuelos := 2
+
 
 !new Vuelo('Vuelo1')
 !Vuelo1.id := 'Vuelo1'
@@ -63,6 +56,11 @@ reset
 !new Vuelo('Vuelo2')
 !Vuelo2.id := 'Vuelo2'
 !Vuelo2.numKilometros := 200
+
+!new Vuelo('Vuelo3')
+!Vuelo3.id := 'Vuelo3'
+!Vuelo3.numKilometros := 150
+
 
 
 !insert(Barajas, Hangar1) into HangarEnAeropuerto --HangarEnAeropuerto1
@@ -75,35 +73,32 @@ reset
 
 !insert(Boeing, Vuelo1) into VueloRealizado --VueloRealizado1
 !insert(Boeing, Vuelo2) into VueloRealizado --VueloRealizado2
-!insert(Caza, Vuelo3) into VueloRealizado --VueloRealizado3
+!insert(Avioneta, Vuelo3) into VueloRealizado --VueloRealizado3
 
 !insert(Pepe, Vuelo1) into PilotoPrincipal --PilotoPrincipal1   
 !insert(Pepe, Vuelo2) into PilotoPrincipal --PilotoPrincipal2
+!insert(Juan, Vuelo3) into PilotoPrincipal --PilotoPrincipal3
 
-!insert(Juan, Vuelo2) into PilotoSecundario --PilotoSecundario1
+
+!insert(Juan, Vuelo3) into PilotoSecundario --PilotoSecundario1
+
 
 !insert(Juan, Iberia) into Trabajar --Trabajar1
 !insert(Juan, AirEuropa) into Trabajar --Trabajar2
 !insert(Pepe, AirEuropa) into Trabajar --Trabajar3
 
-!insert(Maria, Vuelo1) into Volar --Volar1
-
-!insert(Boeing,Desguace1) into AvionEnDesguace --AvionEnDesguace1
+!insert(Avioneta,Desguace1) into AvionEnDesguace --AvionEnDesguace1
 
 !insert(Avioneta,Hangar1) into AvionEnHangar --AvionEnHangar1
 
-!insert(Boeing, Iberia) into Contrato --Contrato1
-!Contrato1.numMeses := 12
-!Contrato1.precioMes := 1000
-!insert(Airbus, Iberia) into Contrato --Contrato2
-!Contrato2.numMeses := 24
-!Contrato2.precioMes := 2000
-!insert(Caza, AirEuropa) into Contrato --Contrato3
-!Contrato3.numMeses := 36
-!Contrato3.precioMes := 3000
-!insert(Avioneta, AirEuropa) into Contrato --Contrato4
-!Contrato4.numMeses := 48
-!Contrato4.precioMes := 4000
+
+!insert(Avioneta, AirEuropa) into Contrato --Contrato1
+!Contrato1.numMeses := 36
+!Contrato1.precioMes := 3000
+
+!insert(Boeing, AirEuropa) into Contrato --Contrato2
+!Contrato2.numMeses := 35
+!Contrato2.precioMes := 3045
 
 
 check
