@@ -147,6 +147,9 @@ context Desguace
 -- Los aviones en desguace deben tener más de 1000 vuelos
 inv avionEnDesguace1000Viajes :
   self.avionRelegado->forAll(a | a.numVuelos >= 1000)
+  -- Versión de prueba del invariante anterior para comprobar que funciona
+inv avionEnDesguace2Viajes :
+  self.avionRelegado->forAll(a | a.numVuelos >= 2)
 -- Los desguaces no pueden tener más aviones de su capacidad
 inv avionesEnDesguaceMenorACapacidad : 
   self.avionRelegado->size() <= self.capacidad
